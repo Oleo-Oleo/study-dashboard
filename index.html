@@ -9,7 +9,7 @@
     body { display: flex; height: 100vh; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background-color: #121212; color: #fff; overflow: hidden; }
     
     /* 전체화면 버튼 */
-    .fullscreen-btn { position: absolute; top: 15px; right: 15px; background: #2a2a2a; border: 1px solid #444; color: #fff; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 0.9rem; z-index: 100; transition: background 0.2s; }
+    .fullscreen-btn { position: absolute; top: 15px; left: 15px; background: #2a2a2a; border: 1px solid #444; color: #fff; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 0.9rem; z-index: 100; transition: background 0.2s; }
     .fullscreen-btn:hover { background: #3a3a3a; }
 
     /* 좌측: 타이머 섹션 */
@@ -124,7 +124,7 @@
     let isRunning = localStorage.getItem('my_timer_running') === 'true';
     let lastStartTime = parseInt(localStorage.getItem('my_last_start_time') || '0', 10);
 
-    // 페이지 복구 시 시간차 보정 계산
+    // 페이지 복구 시 보정 계산
     if (isRunning && lastStartTime > 0) {
       const now = Date.now();
       const elapsed = Math.floor((now - lastStartTime) / 1000);
@@ -301,7 +301,7 @@
       URL.revokeObjectURL(url);
     });
 
-    // 파일 불러오기 버튼 클릭
+    // 파일 불러오기 버튼 클릭 -> hidden file input 클릭
     loadFileBtn.addEventListener('click', () => {
       fileInput.click();
     });
@@ -338,7 +338,7 @@
         }
       };
       reader.readAsText(file);
-      fileInput.value = '';
+      fileInput.value = ''; // 초기화
     });
   </script>
 </body>
